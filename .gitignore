@@ -1,3 +1,10 @@
 .idea/
 Pipfile.lock
 db.sqlite3
+
+media/
+**/migrations/**
+!**/migrations
+!**/migrations/__init__.py
+__pycache__/
+*/__pycache__/
