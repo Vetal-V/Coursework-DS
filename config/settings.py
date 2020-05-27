@@ -44,6 +44,7 @@ INSTALLED_APPS = [
 
     'backend.callboard',
     'backend.gallery',
+    'backend.profiles',
 ]
 
 MIDDLEWARE = [
