@@ -1,15 +1,14 @@
 import os
 from PIL import Image
 from django.db import models
-from datetime import datetime
 
 from django.utils import timezone
 
 
 def get_path_upload_image(file):
     """
-    make path of uploaded file shorter and return it
-    in following format: (media)/profile_pics/user_1/myphoto_2018-12-2.png
+    Зробити шлях для збереження фото у наступному форматі:
+    (media)/(gallery)/(photos)/current_date/photo-name_date.format-photo
     """
     time = timezone.now().strftime("%Y-%m-%d")
     end_extention = file.split('.')[1]

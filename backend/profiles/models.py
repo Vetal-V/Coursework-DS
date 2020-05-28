@@ -10,22 +10,17 @@ class Profile(models.Model):
     user = models.OneToOneField(User, verbose_name="Користувач", on_delete=models.CASCADE)
     #TODO change to media
     avatar = models.ImageField("Фото профілю", upload_to="profile/", blank=True, null=True)
-    email_two = models.EmailField("Додатковий email")
     #TODO: change tp django-phone-field
     phone = models.CharField("Телефон", max_length=25)
     first_name = models.CharField("Ім'я", max_length=50)
-    last_name = models.CharField("Прізвище", max_length=50, blank=True, null=True)
-    slug = models.SlugField("url", max_length=50, unique=True)
+    last_name = models.CharField("Прізвище", max_length=50, default="", blank=True, null=True)
+    #TODO: set unnecessary
+    email_two = models.EmailField("Додатковий email", max_length=50, default=" ")
+    slug = models.SlugField("url", max_length=200, unique=True, default='')
+    # slug = models.SlugField("URL", max_length=50, default='')
 
     def __str__(self):
         return self.first_name
-
-    # def save(self, *args, **kwargs):
-    #     super().save(*args, **kwargs)
-    #     self.slug = "{}{}".format(self.user_id, self.first_name)
-
-    # def get_absolute_url(self):
-    #     return reverse("profile-detail", kwargs={"slug": self.user.username})
 
     class Meta:
         verbose_name = "Профіль"

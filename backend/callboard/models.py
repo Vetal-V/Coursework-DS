@@ -69,7 +69,7 @@ class Advert(models.Model):
         verbose_name="Галерея фото",
         blank=True,
         null=True,
-        on_delete=models.SET_NULL
+        on_delete=models.CASCADE
     )
     file = models.FileField("Файл", upload_to="callboard_file/", blank=True, null=True)
     price = models.DecimalField("Ціна", max_digits=15, decimal_places=0)
