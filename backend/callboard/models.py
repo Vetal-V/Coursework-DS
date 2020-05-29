@@ -77,9 +77,9 @@ class Advert(models.Model):
     moderation = models.BooleanField("Модерація", default=False)
     slug = models.SlugField("url", max_length=200, unique=True)
 
-    # def save(self, *args, **kwargs):
-    #     self.slug = transliteration_ua_eng(self.subject) + "_" + str(self.id)
-    #     super().save(*args, **kwargs)
+    def save(self, *args, **kwargs):
+        self.slug = transliteration_ua_eng(self.subject) + "_" + str(self.id)
+        super().save(*args, **kwargs)
 
     def __str__(self):
         return self.subject
