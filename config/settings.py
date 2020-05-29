@@ -39,8 +39,10 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     'mptt',
+    'corsheaders',
     'rest_framework',
     'rest_framework.authtoken',
+    'djoser',
 
     'backend.callboard',
     'backend.gallery',
