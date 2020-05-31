@@ -1,32 +1,51 @@
 <template>
   <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </div>
+    <Menu @showLogin="setLogin(true)"></Menu>
+    <Login v-if="login" @hideLogin="setLogin(false)"></Login>
     <router-view/>
   </div>
 </template>
 
-<style lang="scss">
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
+<script>
+  import Menu from '@/components/Menu.vue'
+  import Login from '@/components/Login.vue'
+  import $ from 'jquery'
 
-#nav {
-  padding: 30px;
-
-  a {
-    font-weight: bold;
-    color: #2c3e50;
-
-    &.router-link-exact-active {
-      color: #42b983;
+  export default {
+    name: 'app',
+    components: {
+      Menu,
+      Login,
+    },
+    data(){
+      return{
+        login: false,
+      }
+    },
+    created() {
+      if (sessionStorage.getItem("token")) {
+        this.$store.commit("set_auth", true)
+        $.ajaxSetup({
+          headers: {'Authorization': "Token " + sessionStorage.getItem('token')},
+        });
+        // this.$store.dispatch('user_info')
+      } else {
+        this.$store.commit("set_auth", false)
+      }
+    },
+    methods: {
+      setLogin(value) {
+        this.login = value
+      }
     }
   }
-}
+</script>
+
+<style lang="scss">
+$image-path: '~@/../mdb/mdbvue/img';
+@import '~@/../mdb/mdbvue/scss/mdb-free.scss';
+
+  body {
+    background: #e6ecf0;
+  }
 </style>
