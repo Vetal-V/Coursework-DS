@@ -22,7 +22,6 @@
 
 <script>
   import $ from 'jquery'
-
   export default {
     name: "Login",
     data() {
@@ -49,7 +48,9 @@
                 $.ajaxSetup({
                     headers: {'Authorization': "Token " + sessionStorage.getItem('token')},
                 });
+                this.$store.dispatch('user_info')
                 this.close()
+                window.location = '/'
             },
             error: (response) => {
                 if (response.status === 400) {
@@ -60,7 +61,7 @@
       },
       close() {
           this.$emit("hideLogin")
-      }
+      },
     }
   }
 </script>
@@ -72,17 +73,14 @@
      top: -30px;
      left: 40%;
   }
-
   .col-5 {
     flex: 0 0 41.666667%;
     max-width: 38.666667%;
   }
-
   .login-field {
     padding-left: 0.4rem;
     margin-left: 0.4rem;
   }
-
   .modal-body {
     position: relative;
     flex: 1 1 auto;

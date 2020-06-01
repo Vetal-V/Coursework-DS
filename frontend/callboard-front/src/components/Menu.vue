@@ -1,58 +1,76 @@
 <template >
-  <div class="navbar navbar-expand-lg navbar-dark menu">
-        <!-- Collapse button -->
-        <button class="navbar-toggler" type="button" data-toggle="collapse"
-                data-target="#basicExampleNav"
-                aria-controls="basicExampleNav" aria-expanded="false"
-                aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
+  <nav class="navbar navbar-expand-xl navbar-dark menu">
+      <!-- Collapse button -->
+      <button class="navbar-toggler" type="button" data-toggle="collapse"
+              data-target="#navbarNav"
+              aria-controls="navbarNav" aria-expanded="false"
+              aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+      </button>
 
-        <div class="collapse navbar-collapse" id="basicExampleNav">
-            <ul class="navbar-nav mr-auto">
-                <li class="nav-item">
-                    <a class="nav-link" href="" @click="goPage('home')" >Головна</a>
-                </li>
-            </ul>
-            <ul class="navbar-nav mr-0">
-                <li class="nav-item">
-                    <!-- <a v-if="auth" @click="goPage('my_follow_tweets')" class="nav-link" href="#">
-                        My Posts + Whom I follow
-                    </a> -->
-                </li>
-                <li class="nav-item my-0">
-                    <a v-if="auth"  @click="goPage('myAdvert')" class="nav-link" href="#">
-                        Мої оголошення
-                    </a>
-                </li>
-                <li class="nav-item my-0">
-                    <!-- <a v-if="auth"
-                       @click="goPage('profile')"
-                       class="nav-link"
-                       href="#">
-                        <span>{{ $store.getters.get_user_info.user.username }}</span>
-                    </a> -->
-                </li>
-                <li class="nav-item my-0">
-                    <!-- <img v-if="auth" class="avatar"
-                         :src="$store.getters.get_url_media + $store.getters.get_user_info.avatar"> -->
-                </li>
-                <li class="nav-item my-0">
-                    <a v-if="auth" @click="logout()" class="nav-link" href="#">Вихід</a>
-                </li>
-                <li class="nav-item my-0">
-                    <a v-if="!auth"
-                       @click="goLogin()"
-                       class="nav-link"
-                       href="#"
-                       data-toggle="modal"
-                       data-target="#loginModal">
-                        Вхід
-                    </a>
-                </li>
-            </ul>
-        </div>
-    </div>
+      <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav mr-auto">
+              <li class="nav-item">
+                  <a class="nav-link" href="" @click="goPage('home')">
+                    <img src="../assets/logo.png" alt="LOGO SITE" class="logo-site">
+                  </a>
+              </li>
+              <li class="nav-item elem-first-nav">
+                  <a class="nav-link" href="" @click="goPage('home')">Головна</a>
+              </li>
+              <li class="nav-item elem-first-nav">
+                  <a v-if="auth" @click="goPage('myAdvert')" class="nav-link" href="#">
+                      Мої оголошення
+                  </a>
+                  <a v-else @click="goLogin()" class="nav-link " href="#" >Мої оголошення</a>
+              </li>
+              <li class="nav-item elem-first-nav">
+                  <a @click="goPage('Profile')"
+                     v-if="auth"
+                     class="nav-link"
+                     href="#">
+                     Профіль
+                      <!-- <span>{{ $store.getters.get_user_info.user.username }}</span> -->
+                  </a>
+                  <a v-else @click="goLogin()" class="nav-link " href="#">Профіль</a>
+              </li>
+              <!-- <li class="nav-item my-0">
+                  <img v-if="auth" class="avatar"
+                       :src="$store.getters.get_url_media + $store.getters.get_user_info.avatar">
+              </li> -->
+              <li class="nav-item elem-first-nav">
+                  <a v-if="auth" @click="logout()" class="nav-link" href="#">Вихід</a>
+              </li>
+              <li class="nav-item elem-first-nav">
+                  <a v-if="!auth"
+                     @click="goLogin()"
+                     class="nav-link"
+                     href="#"
+                     data-toggle="modal"
+                     data-target="#loginModal">
+                      Вхід
+                  </a>
+              </li>
+              <li class="nav-item elem-first-nav">
+                  <a v-if="!auth"
+                     @click="goRegister()"
+                     class="nav-link"
+                     href="#"
+                     data-toggle="modal"
+                     data-target="#loginModal">
+                      Реєстрація
+                  </a>
+              </li>
+          </ul>
+          <!-- <ul class="navbar-nav mr-2 mt-lg-0">
+
+          </ul> -->
+          <form class="form-inline my-2 my-lg-0">
+            <input class="form-control mr-sm-2" type="search" placeholder="Пошук" aria-label="Search">
+            <button class="btn btn-lg btn-primary" type="submit">Знайти</button>
+          </form>
+      </div>
+    </nav>
 </template>
 
 <script>
@@ -72,6 +90,9 @@
       goLogin(){
         this.$emit("showLogin")
       },
+      goRegister(){
+        this.$emit("showRegister")
+      },
       logout() {
         this.$store.commit("set_auth", false)
         sessionStorage.removeItem("token")
@@ -85,6 +106,40 @@
 </script>
 
 <style scoped>
+  .navbar-expand-lg .navbar-collapse {
+    min-width: 1100px;
+  }
+
+  .navbar-nav{
+    display:flex;
+    align-items:center;
+  }
+
+  .logo-site {
+    height: 5rem;
+  }
+  #navbarNav {
+    font-size: 1.3rem;
+    padding-left: 1rem;
+    padding-right: 2rem;
+  }
+  .nav-item {
+    margin-left: 1rem;
+  }
+  .btn.btn-lg {
+    padding: 0.7rem 1rem;
+    font-size: 1rem;
+    font-weight: bold;
+  }
+  .navbar-toggler-icon {
+      display: inline-block;
+      width: 1.5em;
+      height: 1.5em;
+      vertical-align: middle;
+      content: "";
+      background: no-repeat center center;
+      background-size: 100% 100%;
+  }
   .menu {
     margin: 0 auto;
     background: #2a2a2a;
@@ -92,4 +147,6 @@
     flex: 0 0 auto;
     width: 100%;
   }
+
+
 </style>

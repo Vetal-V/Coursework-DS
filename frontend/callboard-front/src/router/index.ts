@@ -2,6 +2,7 @@ import Vue from 'vue'
 import VueRouter, { RouteConfig } from 'vue-router'
 import Home from '../views/Home.vue'
 import MyAdvert from '@/components/MyAdvert.vue'
+import Profile from '@/components/Profile.vue'
 import store from '../store/index'
 Vue.use(VueRouter)
 
@@ -10,6 +11,11 @@ Vue.use(VueRouter)
     path: '/',
     name: 'home',
     component: Home
+  },
+  {
+    path: '/profile/',
+    name: 'Profile',
+    component: Profile
   },
   {
     path: '/myadvert',
