@@ -24,3 +24,10 @@ class ProfileUpdateSer(serializers.ModelSerializer):
     class Meta:
         model = Profile
         fields = ("avatar", "email_two", "phone", "first_name", "last_name")
+
+
+class AvatarUpdateSer(serializers.ModelSerializer):
+    """Редагування аватара користувача"""
+    class Meta:
+        model = Profile
+        fields = ("avatar",)
