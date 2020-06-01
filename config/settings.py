@@ -37,6 +37,10 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.sites',
+    'allauth',
+    'allauth.account',
+    'rest_auth.registration',
 
     'mptt',
     'corsheaders',
@@ -48,7 +52,10 @@ INSTALLED_APPS = [
     'backend.gallery',
     'backend.profiles',
     'backend.search',
+    'rest_auth'
 ]
+
+SITE_ID = 1
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',

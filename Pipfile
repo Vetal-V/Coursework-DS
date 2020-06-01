@@ -13,6 +13,8 @@ djangorestframework = "*"
 djangorestframework-jsonapi = "*"
 django-cors-headers = "*"
 djoser = "*"
+django-rest-auth = "*"
+django-allauth = "*"
 
 [requires]
 python_version = "3.8"
