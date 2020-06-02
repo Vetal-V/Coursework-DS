@@ -19,18 +19,18 @@
                   <a class="nav-link" href="" @click="goPage('home')">Головна</a>
               </li>
               <li class="nav-item elem-first-nav">
-                  <a v-if="auth" @click="goPage('myAdvert')" class="nav-link" href="#">
+                  <a v-if="auth" @click="goPage('MyAdverts')" class="nav-link" href="#">
                       Мої оголошення
                   </a>
-                  <a v-else @click="goLogin()" class="nav-link " href="#" >Мої оголошення</a>
+                  <a v-else @click="goLogin()" class="nav-link " href="#">Мої оголошення</a>
               </li>
               <li class="nav-item elem-first-nav">
                   <a @click="goPage('Profile')"
                      v-if="auth"
                      class="nav-link"
                      href="#">
-                     Профіль
-                      <!-- <span>{{ $store.getters.get_user_info.user.username }}</span> -->
+                     Профіль,
+                      <span>{{$store.getters.get_user_info.first_name }}</span>
                   </a>
                   <a v-else @click="goLogin()" class="nav-link " href="#">Профіль</a>
               </li>
@@ -66,8 +66,8 @@
 
           </ul> -->
           <form class="form-inline my-2 my-lg-0">
-            <input class="form-control mr-sm-2" type="search" placeholder="Пошук" aria-label="Search">
-            <button class="btn btn-lg btn-primary" type="submit">Знайти</button>
+            <input class="form-control mr-sm-2" type="search" placeholder="Пошук" v-model="text" aria-label="Search">
+            <button class="btn btn-lg btn-primary" @click="goSearch('Search', '')" type="submit">Знайти</button>
           </form>
       </div>
     </nav>
@@ -82,10 +82,17 @@
     mixins: [
       auth
     ],
-
+    data() {
+      return {
+        text: ''
+      }
+    },
     methods: {
       goPage(item) {
         this.$router.push({name: item})
+      },
+      goSearch(item, text) {
+        this.$router.push({name: item, params: {elem: this.text}})
       },
       goLogin(){
         this.$emit("showLogin")

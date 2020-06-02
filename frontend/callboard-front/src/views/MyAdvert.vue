@@ -1,14 +1,16 @@
 <template>
-  <div class="home">
+  <div class="MyAdvert">
+    <!-- {{myadverts}}
+    {{mess}} -->
     <div id="content">
       <div class="container ">
         <div class="row">
           <div class="col col-md-6 offset-md-3 align-self-center">
-            <h1 class="font-weight-bold border border-dark rounded-pill align-middle text-advert">Усі оголошення</h1>
+            <h1 class="font-weight-bold border border-dark rounded-pill align-middle text-advert">Мої оголошення</h1>
           </div>
         </div>
       </div>
-      <Advert v-for="(advert, index) in adverts.slice().reverse()"
+      <Advert v-for="(advert, index) in myadverts.slice().reverse()"
              :key="index"
              v-bind:advert_data="advert">
       </Advert>
@@ -18,17 +20,17 @@
 
 <script>
   import $ from 'jquery'
-  import Advert from '../components/Advert';
+  import Advert from '../components/MyAdvertsList';
 
   export default {
-    name: 'home',
+    name: 'MyAdvert',
     components: {
       Advert,
     },
-    props: {},
     data() {
       return {
-        adverts: "",
+        myadverts: '',
+        img: '127.0.0.1:8000',
         mess: '',
       }
     },
@@ -40,10 +42,12 @@
     methods: {
       loadAdv() {
         $.ajax({
-            url: this.$store.getters.get_url_server + '',
+            url: this.$store.getters.get_url_server +'profile/adverts/',
             type: "GET",
             success: (response) => {
-                this.adverts = response.results
+                this.myadverts = response
+                // this.img = this.img + this.myadverts.images.photos.image
+                // this.myadverts.images.photos[0].image = this.img
             },
             error: (response) => {
                 if (response.status === 400) {
@@ -52,16 +56,15 @@
             }
         })
       },
-      // goDetail(item) {
-      //   this.$router.push({name: item})
-      // }
     },
   }
 </script>
 
 <style media="screen">
   #content {
-    min-height: calc(100vh-131px-100px)
+    /* padding-bottom: 131px; */
+    /* Height of the footer element */
+    min-height: calc(100vh - 131px - 130px);
   }
   .text-advert {
     text-align: center;

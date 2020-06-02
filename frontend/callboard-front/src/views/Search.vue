@@ -1,10 +1,11 @@
 <template>
-  <div class="home">
+  <div class="Search">
+    <!-- {{adverts}} -->
     <div id="content">
       <div class="container ">
         <div class="row">
           <div class="col col-md-6 offset-md-3 align-self-center">
-            <h1 class="font-weight-bold border border-dark rounded-pill align-middle text-advert">Усі оголошення</h1>
+            <h1 class="font-weight-bold border border-dark rounded-pill align-middle text-advert">Результати пошуку:</h1>
           </div>
         </div>
       </div>
@@ -21,26 +22,25 @@
   import Advert from '../components/Advert';
 
   export default {
-    name: 'home',
+    name: 'Search',
     components: {
       Advert,
     },
-    props: {},
     data() {
       return {
-        adverts: "",
+        adverts: '',
         mess: '',
       }
     },
     created() {
       //do something after creating vue instance
-      this.loadAdv()
+      this.searchAdv(this.$route.params.elem)
       // concole.log(this.$store.getter.get_user_info)
     },
     methods: {
-      loadAdv() {
+      searchAdv(item){
         $.ajax({
-            url: this.$store.getters.get_url_server + '',
+            url: this.$store.getters.get_url_server + 'search/?search=' + item,
             type: "GET",
             success: (response) => {
                 this.adverts = response.results
@@ -52,16 +52,15 @@
             }
         })
       },
-      // goDetail(item) {
-      //   this.$router.push({name: item})
-      // }
     },
   }
 </script>
 
 <style media="screen">
   #content {
-    min-height: calc(100vh-131px-100px)
+    /* padding-bottom: 131px; */
+    /* Height of the footer element */
+    min-height: calc(100vh - 131px - 130px);
   }
   .text-advert {
     text-align: center;

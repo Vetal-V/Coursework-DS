@@ -1,34 +1,53 @@
 import Vue from 'vue'
 import VueRouter, { RouteConfig } from 'vue-router'
 import Home from '../views/Home.vue'
-import MyAdvert from '@/components/MyAdvert.vue'
-import Profile from '@/components/Profile.vue'
+import MyAdverts from '../views/MyAdvert.vue'
+import Profile from '../views/Profile.vue'
 import store from '../store/index'
+import AdvertDet from '../views/AdvertDet.vue'
+import Search from '../views/Search.vue'
 Vue.use(VueRouter)
 
   const routes: Array<RouteConfig> = [
-  {
-    path: '/',
-    name: 'home',
-    component: Home
-  },
-  {
-    path: '/profile/',
-    name: 'Profile',
-    component: Profile
-  },
-  {
-    path: '/myadvert',
-    name: 'myAdvert',
-    component: MyAdvert,
-    beforeEnter: (to, from, next) => {
-      if (store.getters.get_auth) {
-        next()
-      } else {
-        next({name: 'home'})
+    {
+      path: '/',
+      name: 'home',
+      component: Home
+    },
+    {
+      path: '/profile',
+      name: 'Profile',
+      component: Profile,
+      beforeEnter: (to, from, next) => {
+        if (store.getters.get_auth) {
+          next()
+        } else {
+          next({name: 'home'})
+        }
       }
-    }
-  },
+    },
+    {
+      path: '/myadverts',
+      name: 'MyAdverts',
+      component: MyAdverts,
+      // beforeEnter: (to, from, next) => {
+      //   if (store.getters.get_auth) {
+      //     next()
+      //   } else {
+      //     next({name: 'home'})
+      //   }
+      // }
+    },
+    {
+      path: '/advertdetail/:id/:slug',
+      name: 'AdvertDet',
+      component: AdvertDet,
+    },
+    {
+      path: '/search/:elem',
+      name: 'Search',
+      component: Search,
+    },
   // {
   //   path: '/about',
   //   name: 'About',

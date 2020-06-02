@@ -1,6 +1,6 @@
 <template >
   <!-- Footer -->
-  <footer class="page-footer font-medium special-color-dark pt-4">
+  <footer class="page-footer font-medium special-color-dark pt-4 ">
 
     <!-- Footer Elements -->
     <div class="container">
@@ -82,5 +82,8 @@
   .pt-4, .py-4 {
     padding-top: 1.5rem!important;
     margin-top: 0.8rem;
+  }
+  .page-footer{
+    margin-top: calc(100vh-131px)
   }
 </style>

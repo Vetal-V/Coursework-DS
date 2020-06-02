@@ -40,6 +40,7 @@
         $.ajaxSetup({
           headers: {'Authorization': "Token " + sessionStorage.getItem('token')},
         });
+        this.$store.dispatch('user_info')
       } else {
         this.$store.commit("set_auth", false)
       }
@@ -74,5 +75,8 @@
     // position: absolute;
     bottom: 0;
     left: 0;
+  }
+  #footer > .container {
+    display: block;
   }
 </style>

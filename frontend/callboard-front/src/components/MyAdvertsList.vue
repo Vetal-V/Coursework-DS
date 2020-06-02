@@ -1,22 +1,22 @@
 <template>
-  <div class="main-adverts">
+  <div class="MyAdvertsList">
     <div class="row advert">
       <div class="container ">
         <div class="msg-one col-11 offset-sm-2">
           <div class="msg-inner">
             <div class="w-image" v-if="advert_data.images">
-              <img class="image-home" :src="advert_data.images.photos[0].image" alt="Image not found.">
+              <img class="image-home" :src="$store.getters.get_url_media + advert_data.images.photos[0].image" alt="Image not found.">
             </div>
             <div v-else class="w-image">
               <a href="#"><img class="image-home" src="../../public/default-adv-photo.png" alt="Image not found."></a>
             </div>
             <div class="w-body">
-              <div><h3 class="adv-subject "><a href="#" @click="goPage('AdvertDet', advert_data.id, advert_data.slug)" class="text-decoration-none text-reset">{{advert_data.subject}}</a></h3></div>
+              <div><h3 class="adv-subject "><a href="#" class="text-decoration-none text-reset" @click="goPage('AdvertDet', advert_data.id, advert_data.slug)">{{advert_data.subject}}</a></h3></div>
               <div><h3 class="font-weight-bold">Ціна: {{advert_data.price}} <i class="fas fa-hryvnia"></i></h3></div>
               <div><h5><i class="fas fa-clock"></i> Дата публікації: {{advert_data.created|filterDateTime}}</h5></div>
               <div><h6>Тип пропозиції: {{advert_data.filters.name}}</h6></div>
               <div class="col align-self-end">
-                <h6 class="text-right"><a href="#" @click="goPage('AdvertDet', advert_data.id, advert_data.slug)" class="">Детальніше</a></h6>
+                <h6 class="text-right"><a href="#" class="" @click="goPage('AdvertDet', advert_data.id, advert_data.slug)">Детальніше</a></h6>
               </div>
               <!-- <p>{{advert_data.slug}}</p> -->
             </div>
@@ -30,7 +30,7 @@
 
 <script>
   export default{
-    name: "Advert",
+    name: "MyAdvertsList",
     props: {
       advert_data: ""
     },

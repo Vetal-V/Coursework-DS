@@ -48,7 +48,6 @@
                 $.ajaxSetup({
                     headers: {'Authorization': "Token " + sessionStorage.getItem('token')},
                 });
-                this.$store.dispatch('user_info')
                 this.close()
                 window.location = '/'
             },
