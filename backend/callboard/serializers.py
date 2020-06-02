@@ -57,7 +57,6 @@ class AdvertDetailSer(serializers.ModelSerializer):
             "subject",
             "description",
             "images",
-            "file",
             "price",
             "created",
             "user"

@@ -71,7 +71,7 @@ class Advert(models.Model):
         null=True,
         on_delete=models.CASCADE
     )
-    file = models.FileField("Файл", upload_to="callboard_file/", blank=True, null=True)
+    # file = models.FileField("Файл", upload_to="callboard_file/", blank=True, null=True)
     price = models.DecimalField("Ціна", max_digits=15, decimal_places=0)
     created = models.DateTimeField("Дата створення", auto_now_add=True)
     moderation = models.BooleanField("Модерація", default=False)
