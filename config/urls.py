@@ -14,6 +14,7 @@ urlpatterns = [
     path('rest-auth/registration/', include('rest_auth.registration.urls')),
     path('api-auth/', include('rest_framework.urls')),
     path('profile/', include("backend.profiles.urls")),
+    path('gallery/', include("backend.gallery.urls")),
     path('search/', include("backend.search.urls")),
     path('', include("backend.callboard.urls")),
 ]
