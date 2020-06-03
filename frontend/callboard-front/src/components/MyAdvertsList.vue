@@ -11,10 +11,25 @@
               <a href="#"><img class="image-home" src="../../public/default-adv-photo.png" alt="Image not found."></a>
             </div>
             <div class="w-body">
-              <div><h3 class="adv-subject "><a href="#" class="text-decoration-none text-reset" @click="goPage('AdvertDet', advert_data.id, advert_data.slug)">{{advert_data.subject}}</a></h3></div>
+              <div class="container-fluid">
+                <div class="row align-items-start">
+                  <div class="col">
+                    <h3 class="adv-subject "><a href="#" class="text-decoration-none text-reset" @click="goPage('AdvertDet', advert_data.id, advert_data.slug)">{{advert_data.subject}}</a></h3>
+                  </div>
+
+                  <div class="row align-items-end">
+                    <div class="col">
+                      <a href="#" @click="goPage('EditMyAdvert', advert_data.id, advert_data.slug)"> <i class="fas fa-edit"></i></a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
               <div><h3 class="font-weight-bold">Ціна: {{advert_data.price}} <i class="fas fa-hryvnia"></i></h3></div>
               <div><h5><i class="fas fa-clock"></i> Дата публікації: {{advert_data.created|filterDateTime}}</h5></div>
               <div><h6>Тип пропозиції: {{advert_data.filters.name}}</h6></div>
+              <div v-if="advert_data.moderation === true"><h6>Модерація: опубліковано.</h6></div>
+              <div v-else><h6>Модерація: в процесі модерації.</h6></div>
               <div class="col align-self-end">
                 <h6 class="text-right"><a href="#" class="" @click="goPage('AdvertDet', advert_data.id, advert_data.slug)">Детальніше</a></h6>
               </div>
@@ -45,6 +60,9 @@
       goPage(item, number, slug) {
         this.$router.push({name: item, params: {id: number, slug: slug}})
       },
+      // goEdit(item, number) {
+      //   this.$router.push({name: item, params: {id: number}})
+      // }
     }
   }
 </script>

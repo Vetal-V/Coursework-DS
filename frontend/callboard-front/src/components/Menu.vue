@@ -25,7 +25,13 @@
                   <a v-else @click="goLogin()" class="nav-link " href="#">Мої оголошення</a>
               </li>
               <li class="nav-item elem-first-nav">
-                  <a @click="goPage('Profile')"
+                  <a v-if="auth" @click="goPage('Create')" class="nav-link" href="#">
+                      Створити оголошення
+                  </a>
+                  <a v-else @click="goLogin()" class="nav-link " href="#">Створити оголошення</a>
+              </li>
+              <li class="nav-item elem-first-nav">
+                  <a @click="goProfile('Profile', $store.getters.get_user_info.pk)"
                      v-if="auth"
                      class="nav-link"
                      href="#">
@@ -90,6 +96,9 @@
     methods: {
       goPage(item) {
         this.$router.push({name: item})
+      },
+      goProfile(item, number) {
+        this.$router.push({name: item, params: {id: number}})
       },
       goSearch(item, text) {
         this.$router.push({name: item, params: {elem: this.text}})

@@ -30,7 +30,6 @@
     data() {
       return {
         myadverts: '',
-        img: '127.0.0.1:8000',
         mess: '',
       }
     },
@@ -46,8 +45,6 @@
             type: "GET",
             success: (response) => {
                 this.myadverts = response
-                // this.img = this.img + this.myadverts.images.photos.image
-                // this.myadverts.images.photos[0].image = this.img
             },
             error: (response) => {
                 if (response.status === 400) {
@@ -62,8 +59,6 @@
 
 <style media="screen">
   #content {
-    /* padding-bottom: 131px; */
-    /* Height of the footer element */
     min-height: calc(100vh - 131px - 130px);
   }
   .text-advert {

@@ -1,5 +1,5 @@
 <template>
-  <div class="main-adverts">
+  <div class="main-adverts" v-if="advert_data.moderation === true">
     <div class="row advert">
       <div class="container ">
         <div class="msg-one col-11 offset-sm-2">

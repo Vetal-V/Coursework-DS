@@ -6,6 +6,8 @@ import Profile from '../views/Profile.vue'
 import store from '../store/index'
 import AdvertDet from '../views/AdvertDet.vue'
 import Search from '../views/Search.vue'
+import Create from '../views/CreateAdv.vue'
+import EditMyAdvert from '../views/EditMyAdvert.vue'
 Vue.use(VueRouter)
 
   const routes: Array<RouteConfig> = [
@@ -15,16 +17,16 @@ Vue.use(VueRouter)
       component: Home
     },
     {
-      path: '/profile',
+      path: '/profile/:id',
       name: 'Profile',
       component: Profile,
-      beforeEnter: (to, from, next) => {
-        if (store.getters.get_auth) {
-          next()
-        } else {
-          next({name: 'home'})
-        }
-      }
+      // beforeEnter: (to, from, next) => {
+      //   if (store.getters.get_auth) {
+      //     next()
+      //   } else {
+      //     next({name: 'home'})
+      //   }
+      // }
     },
     {
       path: '/myadverts',
@@ -47,6 +49,16 @@ Vue.use(VueRouter)
       path: '/search/:elem',
       name: 'Search',
       component: Search,
+    },
+    {
+      path: '/create/',
+      name: 'Create',
+      component: Create,
+    },
+    {
+      path: '/edit/:id/:slug',
+      name: 'EditMyAdvert',
+      component: EditMyAdvert,
     },
   // {
   //   path: '/about',
