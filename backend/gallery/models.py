@@ -3,7 +3,7 @@ from PIL import Image
 from django.db import models
 
 from django.utils import timezone
-
+from backend.units.transliteration import transliteration_ua_eng
 
 def get_path_upload_image(file):
     """
@@ -30,6 +30,7 @@ class Photo(models.Model):
         return self.name
 
     def save(self, *args, **kwargs):
+        self.slug = transliteration_ua_eng(self.name) + "_" + str(self.created)
         self.image.name = get_path_upload_image(self.image.name)
         super().save(*args, **kwargs)
 
@@ -50,10 +51,14 @@ class Gallery(models.Model):
     name = models.CharField("Ім'я", max_length=50)
     photos = models.ManyToManyField(Photo, verbose_name="Фотографії")
     created = models.DateTimeField("Дата створення", auto_now_add=True)
-    slug = models.SlugField("url", max_length=50, unique=True)
+    slug = models.SlugField("URL", max_length=50, default='')
 
     def __str__(self):
         return self.name
+
+    # def save(self, *args, **kwargs):
+    #     self.slug = transliteration_ua_eng(self.name)
+    #     super().save(*args, **kwargs)
 
     class Meta:
         verbose_name = "Галерея"
