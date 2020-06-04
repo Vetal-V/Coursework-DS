@@ -78,7 +78,7 @@ class Advert(models.Model):
     slug = models.SlugField("url", max_length=200, unique=True)
 
     def save(self, *args, **kwargs):
-        self.slug = transliteration_ua_eng(self.subject) + "_" + str(self.id)
+        self.slug = transliteration_ua_eng(self.subject)
         super().save(*args, **kwargs)
 
     def __str__(self):

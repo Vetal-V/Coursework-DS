@@ -48,8 +48,7 @@ class Profile(models.Model):
     def get_avatar_url(self):
         if self.avatar:
             return '/media/{}'.format(self.avatar)
-        else:
-            return '/frontend/callboard-front/public/default-avatar.png'
+            
 
     def save(self,*args,**kwargs):
         super().save(*args, **kwargs)
