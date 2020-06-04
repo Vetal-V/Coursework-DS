@@ -35,7 +35,7 @@
                      v-if="auth"
                      class="nav-link"
                      href="#">
-                     Профіль,
+                     Профіль
                       <span>{{$store.getters.get_user_info.first_name }}</span>
                   </a>
                   <a v-else @click="goLogin()" class="nav-link " href="#">Профіль</a>

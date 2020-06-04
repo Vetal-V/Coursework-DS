@@ -31,37 +31,48 @@
               <div><h5>Номер телефону: {{profile.phone}}</h5> </div>
               <div><h5>Ім'я': {{profile.first_name}}</h5> </div>
               <div><h5>Прізвище: {{profile.last_name}}</h5> </div>
-              <button class="btn btn-lg btn-primary  right-button" type="submit"><h5>Редагувати дані профілю</h5></button>
+              <button  @click="setShowPr()" class="btn btn-lg btn-primary  right-button" type="submit"><h5>Редагувати дані профілю</h5></button>
             </div>
             <br>
             <hr>
         </div>
       </div>
     </div>
+
     <ChangeAvatar
            v-if="showChange"
            v-bind:profile_id="this.profile_id"
            v-bind:show="this.showChange"
            @setnotShow="setnotShow()">
     </ChangeAvatar>
+
+    <ChangeProfile
+           v-if="showChangePr"
+           v-bind:profile_data="this.profile"
+           v-bind:show="this.showChangePr"
+           v-bind:profile_id="this.profile_id"
+           @setnotShow="setnotShowPr()">
+    </ChangeProfile>
   </div>
 </template>
 
 <script>
   import $ from 'jquery'
-  // import ProfileDetail from '../components/ProfileDetail'
   import ChangeAvatar from '@/components/ChangeAvatar.vue'
+  import ChangeProfile from '@/components/ChangeProfile.vue'
 
   export default {
     name: "Profile",
     components: {
       // ProfileDetail,
       ChangeAvatar,
+      ChangeProfile,
     },
     data() {
       return {
         profile: '',
         showChange: '',
+        showChangePr: '',
         profile_id: ''
       }
     },
@@ -75,6 +86,12 @@
       },
       setnotShow() {
         this.showChange = false;
+      },
+      setShowPr() {
+        this.showChangePr = true;
+      },
+      setnotShowPr() {
+        this.showChangePr = false;
       },
       loadProfile(id){
         this.profile_id = id;
