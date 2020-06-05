@@ -15,6 +15,15 @@ This repository contains a backend and frontend for callboard.
 ### Start backend
 ```
 pipenv install
+pipenv run python manage.py makemigrations
+pipenv run python manage.py migrate
+pipenv run python manage.py createsuperuser
+    Username 
+    Password
+    Password again
+pipenv run python ./manage.py loaddata ./import_data/filters.json
+pipenv run python ./manage.py loaddata ./import_data/categories.json
+pipenv run python ./manage.py loaddata ./import_data/terms.json
 pipenv run python manage.py runserver
 ```
 - To check launch backend go to the link:
