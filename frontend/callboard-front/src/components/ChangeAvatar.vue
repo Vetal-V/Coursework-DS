@@ -5,7 +5,7 @@
             <!-- Modal Header -->
             <div class="modal-header">
                 <h4 class="modal-title">Змінити фото профілю</h4>
-                <button @click="close"type="button" class="close" data-dismiss="modal">x</button>
+                <button @click="close" type="button" class="close" data-dismiss="modal">x</button>
             </div>
 
             <!-- Modal body -->

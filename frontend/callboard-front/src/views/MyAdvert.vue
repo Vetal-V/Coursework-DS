@@ -10,7 +10,7 @@
           </div>
         </div>
       </div>
-      <Advert v-for="(advert, index) in myadverts.slice().reverse()"
+      <Advert v-for="(advert, index) in myadverts"
              :key="index"
              v-bind:advert_data="advert">
       </Advert>

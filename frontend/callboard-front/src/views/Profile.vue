@@ -29,7 +29,7 @@
               </div>
               <div><h5>Додаткова пошта: {{profile.email_two}}</h5> </div>
               <div><h5>Номер телефону: {{profile.phone}}</h5> </div>
-              <div><h5>Ім'я': {{profile.first_name}}</h5> </div>
+              <div><h5>Ім'я: {{profile.first_name}}</h5> </div>
               <div><h5>Прізвище: {{profile.last_name}}</h5> </div>
               <button  @click="setShowPr()" class="btn btn-lg btn-primary  right-button" type="submit"><h5>Редагувати дані профілю</h5></button>
             </div>
