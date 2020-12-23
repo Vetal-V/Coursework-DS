@@ -8,3 +8,6 @@ media/
 !**/migrations/__init__.py
 __pycache__/
 */__pycache__/
+*package-lock.json
+.vscode/
+*node_modules/

@@ -246,7 +246,7 @@
 
         </div>
         <div class="description-advert">
-          <p><p class="text-danger reded">*</p> - обов'язкове поле.</p>
+          <p class="text-danger reded">*</p> - обов'язкове поле.
         </div>
         <div class="row ">
           <div class="col col-4"></div>
